@@ -1,0 +1,40 @@
+﻿<div class="top-row ps-3 navbar navbar-dark bg-black">
+    <div class="container-fluid">
+        <a class="navbar-brand text-orange" href="/">ToDoApp</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable bg-black text-white">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link nav-item-link" href="/" Match="NavLinkMatch.All">
+                <i class="fas fa-home"></i> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link nav-item-link" href="/login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link nav-item-link" href="/signup">
+                <i class="fas fa-user-plus"></i> Sign Up
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

@@ -1,0 +1,84 @@
+﻿@page "/add"
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+<div class="todo-container">
+    <div class="todo-card">
+        <h2 class="text-center text-orange">Add New To-Do</h2>
+        <EditForm Model="newTodo" OnValidSubmit="HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label for="title" class="form-label text-white">Title</label>
+                <InputText id="title" class="form-control form-control-sm bg-dark text-white"
+                           @bind-Value="newTodo.Title" placeholder="Enter the title" required />
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label text-white">Description</label>
+                <InputTextArea id="description" class="form-control form-control-sm bg-dark text-white"
+                               @bind-Value="newTodo.Description" placeholder="Enter the description" required />
+            </div>
+            <div class="mb-3">
+                <label for="dueDate" class="form-label text-white">Due Date</label>
+                <InputDate id="dueDate" class="form-control form-control-sm bg-dark text-white"
+                           @bind-Value="newTodo.DueDate" required />
+            </div>
+
+            <button class="btn btn-primary w-100 mt-3" type="submit">Save</button>
+        </EditForm>
+        <button class="btn btn-secondary w-100 mt-2" @onclick="Cancel">Cancel</button>
+
+        @if (!string.IsNullOrEmpty(SuccessMessage))
+        {
+            <div class="alert alert-success mt-3">@SuccessMessage</div>
+        }
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3">@ErrorMessage</div>
+        }
+    </div>
+</div>
+
+@code {
+    private TodoItem newTodo = new TodoItem { DueDate = DateTime.Now };
+    private string SuccessMessage = string.Empty;
+    private string ErrorMessage = string.Empty;
+
+    private async Task HandleSubmit()
+    {
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/Todo", newTodo);
+            if (response.IsSuccessStatusCode)
+            {
+                SuccessMessage = "To-Do added successfully!";
+                ErrorMessage = string.Empty;
+                NavigationManager.NavigateTo("/");
+            }
+            else
+            {
+                ErrorMessage = "Failed to add To-Do. Please try again.";
+                SuccessMessage = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = "An error occurred while adding the To-Do.";
+            SuccessMessage = string.Empty;
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    public class TodoItem
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public DateTime DueDate { get; set; }
+    }
+}

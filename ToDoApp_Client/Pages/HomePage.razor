@@ -1,0 +1,177 @@
+﻿@page "/"
+@using System.Text.Json.Serialization
+@inject HttpClient Http
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+
+<div class="todo-container">
+    <h1 class="text-center text-orange">To-Do List</h1>
+
+    <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-success" @onclick="AddTodo">Add New To-Do</button>
+        <button class="btn btn-danger" @onclick="Logout">Logout</button>
+    </div>
+
+    @if (isLoading)
+    {
+        <p class="text-white text-center">Loading...</p>
+    }
+    else if (hasError)
+    {
+        <p class="text-danger text-center">@errorMessage</p>
+    }
+    else if (todos != null && todos.Any())
+    {
+        <ul class="list-group mt-3">
+            @foreach (var todo in todos)
+            {
+                <li class="list-group-item bg-dark text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="text-orange">@todo.Title</h5>
+                            <p>Description: @todo.Description</p>
+                            <p>DueDate: @todo.DueDate</p>
+                            <p>
+                                Status: <span class="@(todo.IsCompleted ? "text-success" : "text-warning")">
+                                    @(todo.IsCompleted ? "Completed" : "Pending")
+                                </span>
+                            </p>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn btn-success btn-sm me-2" @onclick="() => ViewDetails(todo.Id)">View Details</button>
+                            <button class="btn btn-primary btn-sm me-2" @onclick="() => EditTodo(todo.Id)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteTodo(todo.Id)">Delete</button>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-white text-center">No To-Do items found. Add a new one!</p>
+    }
+</div>
+
+@code {
+    private List<TodoItem> todos = new List<TodoItem>();
+    private bool isLoading = true;
+    private bool hasError = false;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTodos();
+    }
+
+    private async Task LoadTodos()
+    {
+        isLoading = true;
+        hasError = false;
+        errorMessage = string.Empty;
+
+        try
+        {
+            // Retrieve JWT token from local storage
+            var token = await LocalStorage.GetItemAsync<string>("authToken");
+
+            if (string.IsNullOrEmpty(token))
+            {
+                hasError = true;
+                errorMessage = "Authorization token is missing. Please login again.";
+                NavigationManager.NavigateTo("/login");
+                return;
+            }
+
+            // Set the token in the Authorization header
+            Http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            // Fetch To-Do items
+            todos = await Http.GetFromJsonAsync<List<TodoItem>>("api/Todo");
+        }
+        catch (Exception ex)
+        {
+            hasError = true;
+            errorMessage = "Failed to load To-Do items: " + ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task DeleteTodo(int id)
+    {
+        try
+        {
+            // Retrieve JWT token from local storage
+            var token = await LocalStorage.GetItemAsync<string>("authToken");
+
+            if (string.IsNullOrEmpty(token))
+            {
+                hasError = true;
+                errorMessage = "Authorization token is missing. Please login again.";
+                NavigationManager.NavigateTo("/login");
+                return;
+            }
+
+            // Set the token in the Authorization header
+            Http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            // Make a DELETE request
+            var response = await Http.DeleteAsync($"api/Todo/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                await LoadTodos();
+            }
+            else
+            {
+                hasError = true;
+                errorMessage = "Failed to delete To-Do item.";
+            }
+        }
+        catch (Exception ex)
+        {
+            hasError = true;
+            errorMessage = "Error deleting To-Do item: " + ex.Message;
+        }
+    }
+
+    private void AddTodo()
+    {
+        NavigationManager.NavigateTo("/add");
+    }
+
+    private void EditTodo(int id)
+    {
+        NavigationManager.NavigateTo($"/edit/{id}");
+    }
+
+    private void ViewDetails(int id)
+    {
+        NavigationManager.NavigateTo($"/view/{id}");
+    }
+
+    private async Task Logout()
+    {
+        try
+        {
+            await LocalStorage.RemoveItemAsync("authToken");
+            NavigationManager.NavigateTo("/login");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Error during logout: " + ex.Message;
+        }
+    }
+
+    public class TodoItem
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public DateTime DueDate { get; set; }
+        public bool IsCompleted { get; set; } = false;
+    }
+}

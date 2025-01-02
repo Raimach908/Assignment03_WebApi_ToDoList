@@ -1,0 +1,263 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+/* General Theme */
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+a {
+    color: #ffa500;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+    a:hover {
+        color: #ffcc66;
+    }
+
+/* Navigation Menu */
+.nav-scrollable {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #000000;
+    border-right: 1px solid #ffa500;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Page Layout */
+.page {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.top-row {
+    background-color: #000000;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ffa500;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+    color: #ffffff;
+    background-color: #ffa500;
+    border-color: #ffcc66;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+    .btn-primary:hover {
+        background-color: #ffcc66;
+        border-color: #ffa500;
+    }
+
+/* Validation Messages */
+.validation-message {
+    color: #ff4444;
+    font-weight: bold;
+}
+
+/* Focused Form Inputs */
+.form-control:focus {
+    border-color: #ffa500;
+    box-shadow: 0 0 5px #ffa500;
+}
+/* Navbar Brand */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff7f50 !important; /* Orange */
+}
+
+/* Nav Link Styling */
+.nav-item-link {
+    font-size: 1.1rem;
+    color: #ffffff; /* Default white color */
+    padding: 10px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 5px;
+}
+    /* Add space between icon and text */
+    .nav-item-link i {
+        margin-right: 8px; /* Adds 8px space to the right of the icon */
+    }
+
+
+    /* Hover Effect for Links */
+    .nav-item-link:hover {
+        color: #ff7f50; /* Orange hover effect */
+        background-color: rgba(255, 127, 80, 0.1); /* Light orange background */
+        text-decoration: none;
+    }
+
+    /* Active Link */
+    .nav-item-link.active {
+        color: #ff7f50 !important; /* Keep orange for active link */
+        font-weight: bold;
+    }
+
+/* Navbar Collapse */
+.collapse {
+    display: none;
+}
+
+.nav-scrollable {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+/* Center the form on the page */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a1a; /* Dark black background */
+    color: #ffffff; /* White text for the form */
+}
+
+/* Style the card */
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #262626; /* Slightly lighter black for the card */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ff7f50; /* Orange border */
+}
+
+    /* Centered headings */
+    .auth-card h2 {
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+        color: #ff7f50; /* Orange heading */
+    }
+
+/* Adjust form inputs */
+.form-control-sm {
+    font-size: 0.9rem;
+    background-color: #333333; /* Darker input background */
+    color: #ffffff; /* White text inside inputs */
+    border: 1px solid #ff7f50; /* Orange border */
+}
+
+    .form-control-sm::placeholder {
+        color: #bbbbbb; /* Light gray placeholder */
+    }
+
+/* Adjust buttons */
+.btn-primary {
+    background-color: #ff7f50;
+    border-color: #ff7f50;
+    font-size: 0.9rem;
+}
+
+    .btn-primary:hover {
+        background-color: #e0673e; /* Darker orange for hover */
+        border-color: #e0673e;
+    }
+
+/* Link styling */
+.text-primary {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ff7f50;
+}
+
+    .text-primary:hover {
+        color: #e0673e;
+        text-decoration: underline;
+    }
+
+/* Error message styling */
+.text-danger {
+    font-size: 0.85rem;
+    color: #ff4c4c; /* Red error messages */
+}
+/* Main container styling */
+.todo-container {
+    padding: 2rem;
+    background-color: #1a1a1a; /* Black background */
+    min-height: 100vh;
+    color: #ffffff; /* White text */
+}
+
+/* Header Styling */
+.text-orange {
+    color: #ff7f50; /* Orange header text */
+}
+
+/* To-Do List Item */
+.list-group-item {
+    margin-bottom: 1rem;
+    border: 1px solid #ff7f50; /* Orange border for items */
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+    /* Hover effect for list items */
+    .list-group-item:hover {
+        background-color: #333333; /* Slightly lighter black */
+        transform: translateY(-3px); /* Raise item on hover */
+    }
+
+/* Button Styling */
+.btn-primary {
+    background-color: #ff7f50; /* Orange background */
+    border-color: #ff7f50;
+    color: #ffffff;
+}
+
+    .btn-primary:hover {
+        background-color: #e0673e; /* Darker orange on hover */
+        border-color: #e0673e;
+    }
+
+.btn-danger {
+    background-color: #ff4c4c; /* Red for delete */
+    border-color: #ff4c4c;
+    color: #ffffff;
+}
+
+    .btn-danger:hover {
+        background-color: #d63a3a; /* Darker red on hover */
+        border-color: #d63a3a;
+    }
+
+.btn-success {
+    background-color: #28a745; /* Green for Add */
+    border-color: #28a745;
+    color: #ffffff;
+}
+
+    .btn-success:hover {
+        background-color: #218838; /* Darker green on hover */
+        border-color: #218838;
+    }
+
+/* Status Colors */
+.text-success {
+    color: #28a745 !important; /* Green for Completed */
+}
+
+.text-warning {
+    color: #ffc107 !important; /* Yellow for Pending */
+}

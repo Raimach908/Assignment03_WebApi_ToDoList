@@ -1,0 +1,61 @@
+﻿@page "/view/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<div class="todo-container">
+    @if (todo == null)
+    {
+        <p class="text-white text-center">Loading...</p>
+    }
+    else
+    {
+        <div class="todo-card">
+            <div class="card-header text-orange">
+                <h2 class="text-center">@todo.Title</h2>
+            </div>
+            <div class="card-body text-white">
+                <p><strong>Description:</strong> @todo.Description</p>
+                <p><strong>Due Date:</strong> @todo.DueDate</p>
+                <p>
+                    <strong>Status:</strong> <span class="@(todo.IsCompleted ? "text-success" : "text-warning")">
+                        @(todo.IsCompleted ? "Completed" : "Pending")
+                    </span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary w-100" @onclick="GoBack">Back to List</button>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public int id { get; set; }
+    private TodoItem? todo;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            todo = await Http.GetFromJsonAsync<TodoItem>($"api/Todo/{id}"); // Fetch To-Do item by ID
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching To-Do item: {ex.Message}");
+        }
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/"); // Navigate back to the To-Do list
+    }
+
+    public class TodoItem
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public DateTime DueDate { get; set; }
+        public bool IsCompleted { get; set; } = false;
+    }
+}

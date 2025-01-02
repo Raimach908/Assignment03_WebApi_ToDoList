@@ -1,0 +1,67 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = ToDoApp
+build_property.RootNamespace = ToDoApp
+build_property.ProjectDir = D:\Apps\Desktop\Assignment\ToDoApp_Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Apps\Desktop\Assignment\ToDoApp_Client
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Pages/AddTodo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVG9kby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Pages/EditTodo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFRvZG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Pages/HomePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Pages/Signup.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2lnbnVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Pages/ViewTodo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld1RvZG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-ljsmefs406
+
+[D:/Apps/Desktop/Assignment/ToDoApp_Client/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-krhm8xhs33
